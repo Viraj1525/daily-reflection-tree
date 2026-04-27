@@ -1,0 +1,435 @@
+{
+  "tree": {
+    "version": "1.0",
+    "description": "Daily Reflection Tree - Three-axis deterministic reflection tool"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "text": "# Daily Reflection\n\nTake a breath. This is not a test—there are no right answers, only honest ones.\n\nWe'll explore three dimensions of your recent experience: where you locate agency, how you frame your role, and whose needs you hold in mind.\n\nNo judgment. Just inquiry.\n\nPress Enter to begin.",
+      "parentId": null,
+      "signal": null,
+      "target": "axis1_q1"
+    },
+    {
+      "id": "axis1_q1",
+      "type": "question",
+      "text": "Axis 1: Locus\n\nThink of something that happened recently—a conversation, a decision, a moment that didn't go as hoped.\n\nWhen you replay it, where does the cause seem to live? Not where you wish it lived, or where others might place it—but in your gut, where does it actually sit?",
+      "options": [
+        "It felt like it happened TO me—circumstances, other people's choices, bad timing.",
+        "I can see my fingerprints on it, but there were also forces beyond my control.",
+        "I made calls, I chose paths—whatever happened, I was in the arena.",
+        "I shaped it significantly, and I could see the ripple effects of my choices."
+      ],
+      "routing": {
+        "1": "axis1_q2a",
+        "2": "axis1_q2b",
+        "3": "axis1_q2c",
+        "4": "axis1_q2d"
+      },
+      "signal": {"axis": "locus", "direction": "internal"},
+      "target": null
+    },
+    {
+      "id": "axis1_q2a",
+      "type": "question",
+      "text": "You described the event as something that happened to you. That's a real experience.\n\nWhen you imagine a version of that same situation where you had more influence, does it feel like a fantasy—or does it feel like something you could actually reach?",
+      "options": [
+        "Honestly? It feels like fantasy. The constraints were real.",
+        "I can see one or two moves I might have made differently.",
+        "There's a version where I show up differently—probably would have changed things.",
+        "I can see exactly where I could have intervened. It's clear."
+      ],
+      "routing": {
+        "1": "axis1_decision",
+        "2": "axis1_decision",
+        "3": "axis1_decision",
+        "4": "axis1_decision"
+      },
+      "signal": {"axis": "locus", "direction": "internal", "magnitude": -1},
+      "target": null
+    },
+    {
+      "id": "axis1_q2b",
+      "type": "question",
+      "text": "You see your role, but also forces beyond you. That's a nuanced view.\n\nIn those moments where you felt the external pull—was it genuinely outside your reach, or was there a part of you that chose not to push back?",
+      "options": [
+        "It was genuinely outside—structural, temporal, beyond my reach.",
+        "There was room, but I didn't see it at the time. Now I do.",
+        "I sensed the choice, but I opted for peace/comfort/safety instead.",
+        "I knew, and I let it slide. That's worth sitting with."
+      ],
+      "routing": {
+        "1": "axis1_decision",
+        "2": "axis1_decision",
+        "3": "axis1_decision",
+        "4": "axis1_decision"
+      },
+      "signal": {"axis": "locus", "direction": "internal", "magnitude": 0},
+      "target": null
+    },
+    {
+      "id": "axis1_q2c",
+      "type": "question",
+      "text": "You own your presence in the arena. Good.\n\nWhen you look at the outcome, what's the ratio in your gut—how much do you attribute to your choices versus factors that would have played out similarly regardless?",
+      "options": [
+        "My choices were decisive. Different choices, different outcome.",
+        "Maybe 70/30—my moves mattered, but context mattered too.",
+        "Maybe 50/50. Hard to know what was me and what was the situation.",
+        "Honestly, I think the situation was the bigger factor. My choices were minor."
+      ],
+      "routing": {
+        "1": "axis1_decision",
+        "2": "axis1_decision",
+        "3": "axis1_decision",
+        "4": "axis1_decision"
+      },
+      "signal": {"axis": "locus", "direction": "internal", "magnitude": 1},
+      "target": null
+    },
+    {
+      "id": "axis1_q2d",
+      "type": "question",
+      "text": "You clearly see your influence and its ripple effects. That's a strong internal locus.\n\nWhen the ripples went out—did they land where you intended? And if they landed differently, do you see that as information or as something to fix?",
+      "options": [
+        "They landed where I intended. I read the situation well.",
+        "Mostly landed right, but a few landed unexpectedly. Good data.",
+        "Some landed differently. I'm still processing what that means.",
+        "They landed quite differently. I misread something important."
+      ],
+      "routing": {
+        "1": "axis1_decision",
+        "2": "axis1_decision",
+        "3": "axis1_decision",
+        "4": "axis1_decision"
+      },
+      "signal": {"axis": "locus", "direction": "internal", "magnitude": 2},
+      "target": null
+    },
+    {
+      "id": "axis1_decision",
+      "type": "decision",
+      "text": "Evaluating Axis 1 signals...",
+      "options": [],
+      "routing": {
+        "condition": "locus_score >= 0",
+        "true": "axis1_reflection_victor",
+        "false": "axis1_reflection_victim"
+      },
+      "signal": null,
+      "target": null
+    },
+    {
+      "id": "axis1_reflection_victim",
+      "type": "reflection",
+      "text": "From what you've shared, you tend to locate agency outside yourself—seeing events as happening to you rather than being shaped by you.\n\nThis isn't a judgment. External locus is often a realistic read of genuine constraints. But it's worth asking: Is there a version of that situation you haven't yet imagined where you have more agency?\n\n{axis1_q1.answer}",
+      "options": [],
+      "routing": {
+        "1": "axis2_q3"
+      },
+      "signal": {"axis": "locus", "result": "victim"},
+      "target": "axis2_q3"
+    },
+    {
+      "id": "axis1_reflection_victor",
+      "type": "reflection",
+      "text": "From what you've shared, you locate agency within yourself—you see your choices as consequential, even when context matters.\n\nThis is a powerful stance. It means you can learn from outcomes because you were in the game. But it's also worth checking: Do you ever attribute to yourself in ways that mask genuine external constraints?\n\n{axis1_q1.answer}",
+      "options": [],
+      "routing": {
+        "1": "axis2_q3"
+      },
+      "signal": {"axis": "locus", "result": "victor"},
+      "target": "axis2_q3"
+    },
+    {
+      "id": "axis2_q3",
+      "type": "question",
+      "text": "Axis 2: Orientation\n\nNow let's shift to how you frame your role in relation to others.\n\nWhen you receive something—recognition, help, benefit, opportunity—how does it land? What's the first frame that comes to mind?",
+      "options": [
+        "I earned it. I put in the work, and this is what's due.",
+        "I appreciate it, but I also wonder if I really deserved it.",
+        "I feel a bit guilty. Others contributed; I got more than my share.",
+        "I receive it with gratitude, and immediately think about passing it forward."
+      ],
+      "routing": {
+        "1": "axis2_q4a",
+        "2": "axis2_q4b",
+        "3": "axis2_q4c",
+        "4": "axis2_q4d"
+      },
+      "signal": {"axis": "orientation", "direction": "entitlement"},
+      "target": null
+    },
+    {
+      "id": "axis2_q4a",
+      "type": "question",
+      "text": "You frame what you receive as what's due to you. That's a strong entitlement orientation.\n\nWhen you look at someone who received less than you in a similar situation—what's your first thought?",
+      "options": [
+        "They probably didn't work as hard or make the same choices.",
+        "Circumstances were different. Hard to compare.",
+        "Life's not fair, but that's just how it goes.",
+        "I wonder what I might have that they don't. I feel something."
+      ],
+      "routing": {
+        "1": "axis2_decision",
+        "2": "axis2_decision",
+        "3": "axis2_decision",
+        "4": "axis2_decision"
+      },
+      "signal": {"axis": "orientation", "direction": "entitlement", "magnitude": 2},
+      "target": null
+    },
+    {
+      "id": "axis2_q4b",
+      "type": "question",
+      "text": "You appreciate what you receive but carry some doubt about deserving it. That's a thoughtful middle ground.\n\nWhen that doubt arises, is it because you genuinely didn't earn it—or because it feels uncomfortable to claim what you've built?",
+      "options": [
+        "Honestly, I probably didn't earn all of it. Some was luck, timing.",
+        "I earned most of it, but claiming it feels presumptuous.",
+        "I earned it, but there's always someone who had it harder.",
+        "I earned it, but I don't like to toot my own horn."
+      ],
+      "routing": {
+        "1": "axis2_decision",
+        "2": "axis2_decision",
+        "3": "axis2_decision",
+        "4": "axis2_decision"
+      },
+      "signal": {"axis": "orientation", "direction": "entitlement", "magnitude": 0},
+      "target": null
+    },
+    {
+      "id": "axis2_q4c",
+      "type": "question",
+      "text": "You feel a sense of guilt about receiving more than others. That's notable.\n\nWhen that guilt shows up, what does it do? Does it push you to give more, shrink from receiving, or just sit there uncomfortably?",
+      "options": [
+        "It pushes me to give more. I try to balance the scales.",
+        "It makes me uncomfortable, but I don't really act on it.",
+        "I rationalize it—everyone's path is different.",
+        "It motivates me to help others in the future. Forward action."
+      ],
+      "routing": {
+        "1": "axis2_decision",
+        "2": "axis2_decision",
+        "3": "axis2_decision",
+        "4": "axis2_decision"
+      },
+      "signal": {"axis": "orientation", "direction": "contribution", "magnitude": -1},
+      "target": null
+    },
+    {
+      "id": "axis2_q4d",
+      "type": "question",
+      "text": "You receive with gratitude and think immediately about passing it forward. That's a contribution orientation.\n\nWhen you pass it forward, what drives that? Is it obligation, genuine care, a belief that abundance flows, or something else?",
+      "options": [
+        "It's genuine care. I want to help because I know the struggle.",
+        "It's belief in reciprocity. What goes around comes around.",
+        "It's obligation. I feel like I have to, or I'll lose what I have.",
+        "It's all of the above, honestly. Hard to separate."
+      ],
+      "routing": {
+        "1": "axis2_decision",
+        "2": "axis2_decision",
+        "3": "axis2_decision",
+        "4": "axis2_decision"
+      },
+      "signal": {"axis": "orientation", "direction": "contribution", "magnitude": 2},
+      "target": null
+    },
+    {
+      "id": "axis2_decision",
+      "type": "decision",
+      "text": "Evaluating Axis 2 signals...",
+      "options": [],
+      "routing": {
+        "condition": "orientation_score >= 0",
+        "true": "axis2_reflection_entitlement",
+        "false": "axis2_reflection_contribution"
+      },
+      "signal": null,
+      "target": null
+    },
+    {
+      "id": "axis2_reflection_entitlement",
+      "type": "reflection",
+      "text": "Based on your answers, you tend to frame your role through a lens of deserving—believing you have earned what you receive, and perhaps viewing outcomes through that lens.\n\nEntitlement orientation isn't inherently negative; it can motivate high performance. But it's worth asking: When you frame things as 'earned,' do you ever miss seeing the gift in what you have?\n\n{axis2_q3.answer}",
+      "options": [],
+      "routing": {
+        "1": "axis3_q5"
+      },
+      "signal": {"axis": "orientation", "result": "entitlement"},
+      "target": "axis3_q5"
+    },
+    {
+      "id": "axis2_reflection_contribution",
+      "type": "reflection",
+      "text": "Based on your answers, you tend to frame your role through a lens of contribution—receiving with gratitude and feeling connected to others' wellbeing.\n\nThis orientation builds relationships and community. But it's worth checking: Do you allow yourself to receive fully, or does giving become a way to avoid being in debt?\n\n{axis2_q3.answer}",
+      "options": [],
+      "routing": {
+        "1": "axis3_q5"
+      },
+      "signal": {"axis": "orientation", "result": "contribution"},
+      "target": "axis3_q5"
+    },
+    {
+      "id": "axis3_q5",
+      "type": "question",
+      "text": "Axis 3: Radius\n\nNow we turn to the scope of your concern—who occupies your mental space when you make decisions.\n\nWhen you face a significant decision—about work, life, your next step—what's the primary audience you're considering?",
+      "options": [
+        "Me. It's my life, my path. I need to take care of myself first.",
+        "Me, but I also consider how it affects a few key people close to me.",
+        "A broader circle—family, team, community. I'm thinking about us.",
+        "I'm thinking about the wider impact. Decisions ripple outward."
+      ],
+      "routing": {
+        "1": "axis3_q6a",
+        "2": "axis3_q6b",
+        "3": "axis3_q6c",
+        "4": "axis3_q6d"
+      },
+      "signal": {"axis": "radius", "direction": "self"},
+      "target": null
+    },
+    {
+      "id": "axis3_q6a",
+      "type": "question",
+      "text": "You lead with yourself. Self-first is a clear stance.\n\nWhen you make a self-focused decision, do you feel clear and unburdened—or do you sometimes feel a pull toward considering others that you resist?",
+      "options": [
+        "I feel clear. Self-care isn't selfish. I know what I need.",
+        "I feel clear most of the time, but occasionally wonder 'what if?'",
+        "I resist the pull, but it's there. I try to ignore it.",
+        "I feel conflicted. I want to consider others but I need to protect myself."
+      ],
+      "routing": {
+        "1": "axis3_decision",
+        "2": "axis3_decision",
+        "3": "axis3_decision",
+        "4": "axis3_decision"
+      },
+      "signal": {"axis": "radius", "direction": "self", "magnitude": 2},
+      "target": null
+    },
+    {
+      "id": "axis3_q6b",
+      "type": "question",
+      "text": "You consider yourself and a few key people. That's a bounded circle.\n\nWhen those key people have conflicting needs, how do you navigate that?",
+      "options": [
+        "I prioritize based on urgency or closeness—some people first.",
+        "I try to find a solution that works for everyone.",
+        "I look for a compromise—nobody gets everything, everyone gets something.",
+        "I feel stuck. Conflict in my circle is the hardest thing."
+      ],
+      "routing": {
+        "1": "axis3_decision",
+        "2": "axis3_decision",
+        "3": "axis3_decision",
+        "4": "axis3_decision"
+      },
+      "signal": {"axis": "radius", "direction": "self", "magnitude": 0},
+      "target": null
+    },
+    {
+      "id": "axis3_q6c",
+      "type": "question",
+      "text": "You think about 'us'—family, team, community. That's a relational frame.\n\nWhen serving that broader circle, where does your own need sit? Is it met, deferred, or resented?",
+      "options": [
+        "My needs are met. I can't pour from an empty cup.",
+        "My needs are often deferred, but I accept that for now.",
+        "My needs are deferred, and I carry some resentment about it.",
+        "I don't really know. I haven't checked in with myself."
+      ],
+      "routing": {
+        "1": "axis3_decision",
+        "2": "axis3_decision",
+        "3": "axis3_decision",
+        "4": "axis3_decision"
+      },
+      "signal": {"axis": "radius", "direction": "altrocentric", "magnitude": 0},
+      "target": null
+    },
+    {
+      "id": "axis3_q6d",
+      "type": "question",
+      "text": "You consider the wider ripple effects. That's an expansive radius.\n\nWhen you hold that wide a view, does it feel empowering—like your choices matter—or overwhelming—like you can't possibly account for everything?",
+      "options": [
+        "Empowering. I like that my choices can create positive ripples.",
+        "Both. It's meaningful but also a lot of weight to carry.",
+        "Overwhelming sometimes. I can't control how it lands.",
+        "I try not to think too hard about it or I'd freeze."
+      ],
+      "routing": {
+        "1": "axis3_decision",
+        "2": "axis3_decision",
+        "3": "axis3_decision",
+        "4": "axis3_decision"
+      },
+      "signal": {"axis": "radius", "direction": "altrocentric", "magnitude": 2},
+      "target": null
+    },
+    {
+      "id": "axis3_decision",
+      "type": "decision",
+      "text": "Evaluating Axis 3 signals...",
+      "options": [],
+      "routing": {
+        "condition": "radius_score >= 0",
+        "true": "axis3_reflection_self",
+        "false": "axis3_reflection_altrocentric"
+      },
+      "signal": null,
+      "target": null
+    },
+    {
+      "id": "axis3_reflection_self",
+      "type": "reflection",
+      "text": "Based on your answers, your concern radius tends to center on yourself—perhaps extending to a few key people, but primarily focused on your own path.\n\nThis self-orientation is practical and prevents diffusion of energy. But it's worth asking: As you move through your days, whose needs are you NOT seeing because they're outside your radius?\n\n{axis3_q5.answer}",
+      "options": [],
+      "routing": {
+        "1": "bridge1"
+      },
+      "signal": {"axis": "radius", "result": "self"},
+      "target": "bridge1"
+    },
+    {
+      "id": "axis3_reflection_altrocentric",
+      "type": "reflection",
+      "text": "Based on your answers, your concern radius extends beyond yourself—to relationships, community, or even the wider world.\n\nThis expansive orientation creates connection and meaning. But it's worth checking: In your caring for others, is there room for your own legitimate needs—or have you merged 'selfless' with 'self-less'?\n\n{axis3_q5.answer}",
+      "options": [],
+      "routing": {
+        "1": "bridge1"
+      },
+      "signal": {"axis": "radius", "result": "altrocentric"},
+      "target": "bridge1"
+    },
+    {
+      "id": "bridge1",
+      "type": "bridge",
+      "text": "We've traveled through three dimensions: where you locate agency, how you frame your role, and whose needs you hold in mind.\n\nThese aren't abstract—they shape how you experience every day. Now let's synthesize what surfaced.",
+      "options": [],
+      "routing": {
+        "1": "summary"
+      },
+      "signal": null,
+      "target": "summary"
+    },
+    {
+      "id": "summary",
+      "type": "summary",
+      "text": "# Your Reflection Profile\n\n## Axis 1: Locus\n{axis1_reflection_victim.text} → {axis1_reflection_victor.text}\n\nYour locus orientation: **{axis1_reflection_victim.signal.result} / {axis1_reflection_victor.signal.result}**\n\n## Axis 2: Orientation\n{axis2_reflection_entitlement.text} → {axis2_reflection_contribution.text}\n\nYour orientation: **{axis2_reflection_entitlement.signal.result} / {axis2_reflection_contribution.signal.result}**\n\n## Axis 3: Radius\n{axis3_reflection_self.text} → {axis3_reflection_altrocentric.text}\n\nYour radius: **{axis3_reflection_self.signal.result} / {axis3_reflection_altrocentric.signal.result}**\n\n---\n\nThis isn't a diagnosis—it's a snapshot. Where you place agency, how you claim your role, and who you hold in mind: these are choices you make every day, whether you notice or not.\n\nThe question isn't whether you're 'right'—it's whether you're aware.\n\nThanks for walking through this.",
+      "options": [],
+      "routing": {},
+      "signal": null,
+      "target": "end"
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "text": "Reflection complete. You can run this again anytime.",
+      "options": [],
+      "routing": {},
+      "signal": null,
+      "target": null
+    }
+  ]
+}
